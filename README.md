@@ -11,7 +11,7 @@ $ git clone https://github.com/CocOAuth/CocOAuthDemoApp.git
 2. Install CocoaPods
 https://cocoapods.org/
 
-3. Install Pods
+3. Install the Pod-Project and create a workspace
 ```
 $ pod update
 ```
