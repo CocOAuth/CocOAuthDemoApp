@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import CocOAuth
 
-
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate  {
 
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+       // NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +37,20 @@ class ViewController: UIViewController {
         })
     }
 
+    
+    @IBAction func loginAction() {
+        view.endEditing(true)
+        if let username = username.text, password = password.text {
+            let config = CocOAuthConfig(tokenURL: NSURL(string: "http://brentertainment.com/oauth2/lockdin/token")!, clientID: "demoapp", clientSecret: "demopass")
+            let account = Account(config: config)
+            account.authenticateWithUsername(username, password: password) {
+            }
+        }
+    }
 
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
