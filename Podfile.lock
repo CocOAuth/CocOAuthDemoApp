@@ -1,0 +1,16 @@
+PODS:
+  - CocOAuth (0.0.1)
+
+DEPENDENCIES:
+  - CocOAuth (from `../CocOAuth`)
+
+EXTERNAL SOURCES:
+  CocOAuth:
+    :path: ../CocOAuth
+
+SPEC CHECKSUMS:
+  CocOAuth: c98978838f42246fc1c242195a62b20c4508baff
+
+PODFILE CHECKSUM: 68a0e474ac7dca76873ca48d900a792b13230f58
+
+COCOAPODS: 1.1.1

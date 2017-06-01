@@ -17,10 +17,11 @@ class ViewController: UIViewController, UITextFieldDelegate  {
     @IBOutlet var top: NSLayoutConstraint!
     @IBOutlet var login: UIButton!
     
+    @IBOutlet weak var message: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
        // NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }
 
@@ -28,27 +29,30 @@ class ViewController: UIViewController, UITextFieldDelegate  {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         var info = notification.userInfo!
-        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        UIView.animateWithDuration(0.1, animations: { () -> Void in
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.top.constant = 240 - keyboardFrame.size.height
         })
     }
-
     
     @IBAction func loginAction() {
         view.endEditing(true)
-        if let username = username.text, password = password.text {
-            let config = CocOAuthConfig(tokenURL: NSURL(string: "http://brentertainment.com/oauth2/lockdin/token")!, clientID: "demoapp", clientSecret: "demopass")
-            let account = Account(config: config)
-            account.authenticateWithUsername(username, password: password) {
+        if let username = username.text, let password = password.text {
+            let config = OAuth2Config(tokenURL: URL(string: "http://brentertainment.com/oauth2/lockdin/token")!, clientID: "demoapp", clientSecret: "demopass")
+            let authenticator = Authenticator(config: config)
+            authenticator.authenticateWithUsername(username, password: password) {success, errorMessage in
+                if(success){
+                    self.message.text = "success"
+                }else{
+                    self.message.text = errorMessage
+                }
             }
         }
     }
-
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
