@@ -26,7 +26,7 @@
                                 <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
                             </imageView>
                             <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUA-pG-5gC">
-                                <rect key="frame" x="26" y="120" width="323" height="447"/>
+                                <rect key="frame" x="26" y="120" width="323" height="497"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="BYI-gN-vYW" userLabel="Logo">
                                         <rect key="frame" x="111.5" y="30" width="100" height="100"/>
@@ -60,7 +60,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D05-K4-vQt">
                                         <rect key="frame" x="265" y="280" width="38" height="30"/>
                                         <state key="normal" title="Login">
-                                            <color key="titleColor" red="0.34901960780000002" green="0.65490196079999996" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.35049170255661011" green="0.65686678886413574" blue="0.14954504370689392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="login" destination="BYZ-38-t0r" eventType="touchUpInside" id="CZp-aw-CuJ"/>
@@ -76,13 +76,24 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CN1-Gq-gWj">
+                                        <rect key="frame" x="208" y="448" width="95" height="30"/>
+                                        <state key="normal" title="Access Token">
+                                            <color key="titleColor" red="0.35049170255661011" green="0.65686678886413574" blue="0.14954504370689392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onAccessToken:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Em1-5i-Aq2"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="a1V-Rm-RAT" firstAttribute="centerX" secondItem="E9K-pR-sBC" secondAttribute="centerX" id="1ba-ts-Jxh"/>
                                     <constraint firstItem="BYI-gN-vYW" firstAttribute="centerX" secondItem="oUA-pG-5gC" secondAttribute="centerX" id="25l-TD-KFo"/>
+                                    <constraint firstItem="CN1-Gq-gWj" firstAttribute="leading" secondItem="c0K-9R-oNW" secondAttribute="trailing" constant="-95" id="8xs-bb-YVV"/>
                                     <constraint firstItem="a1V-Rm-RAT" firstAttribute="top" secondItem="E9K-pR-sBC" secondAttribute="bottom" constant="20" id="FIX-6I-zEV"/>
                                     <constraint firstItem="c0K-9R-oNW" firstAttribute="width" secondItem="a1V-Rm-RAT" secondAttribute="width" id="Giz-zC-67a"/>
+                                    <constraint firstItem="CN1-Gq-gWj" firstAttribute="top" secondItem="c0K-9R-oNW" secondAttribute="bottom" constant="48" id="Sgd-QM-uNI"/>
                                     <constraint firstItem="BYI-gN-vYW" firstAttribute="top" secondItem="oUA-pG-5gC" secondAttribute="top" constant="30" id="UUF-fR-8L9"/>
                                     <constraint firstItem="D05-K4-vQt" firstAttribute="trailing" secondItem="a1V-Rm-RAT" secondAttribute="trailing" id="VDW-bZ-COF"/>
                                     <constraint firstItem="a1V-Rm-RAT" firstAttribute="width" secondItem="E9K-pR-sBC" secondAttribute="width" id="WBA-lO-E5z"/>
@@ -93,11 +104,12 @@
                                     <constraint firstItem="E9K-pR-sBC" firstAttribute="leading" secondItem="oUA-pG-5gC" secondAttribute="leading" constant="20" id="lhv-VY-y0t"/>
                                     <constraint firstItem="c0K-9R-oNW" firstAttribute="centerX" secondItem="oUA-pG-5gC" secondAttribute="centerX" id="xLG-UP-4yr"/>
                                     <constraint firstItem="c0K-9R-oNW" firstAttribute="top" secondItem="a1V-Rm-RAT" secondAttribute="bottom" constant="70" id="y2e-9J-3DC"/>
+                                    <constraint firstItem="CN1-Gq-gWj" firstAttribute="trailing" secondItem="D05-K4-vQt" secondAttribute="trailing" id="yEf-77-dst"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oUA-pG-5gC" secondAttribute="bottom" constant="100" id="AQQ-xz-bve"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oUA-pG-5gC" secondAttribute="bottom" constant="50" id="AQQ-xz-bve"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Bu8-zh-szH" secondAttribute="bottom" id="JQH-mH-fMm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Bu8-zh-szH" secondAttribute="trailing" constant="-20" id="RCX-ic-lrq"/>
                             <constraint firstItem="Bu8-zh-szH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="YRS-Jx-nvL"/>

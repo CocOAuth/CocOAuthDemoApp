@@ -18,13 +18,33 @@ class ViewController: UIViewController, UITextFieldDelegate  {
     @IBOutlet var login: UIButton!
     
     @IBOutlet weak var message: UILabel!
+    
+    var authenticator:Authenticator?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let config = OAuth2Config(tokenURL: URL(string: "http://brentertainment.com/oauth2/lockdin/token")!, clientID: "demoapp", clientSecret: "demopass")
+        authenticator = Authenticator(config: config)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
        // NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }
 
+    @IBAction func onAccessToken(_ sender: Any) {
+        
+        authenticator?.retrieveAccessToken(handler: { (token, error) in
+            if let accessToken = token{
+                self.message.text = accessToken
+            }else if let e = error{
+                self.message.text = e.localizedDescription
+                
+            }
+        })
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,14 +61,15 @@ class ViewController: UIViewController, UITextFieldDelegate  {
     @IBAction func loginAction() {
         view.endEditing(true)
         if let username = username.text, let password = password.text {
-            let config = OAuth2Config(tokenURL: URL(string: "http://brentertainment.com/oauth2/lockdin/token")!, clientID: "demoapp", clientSecret: "demopass")
-            let authenticator = Authenticator(config: config)
-            authenticator.authenticateWithUsername(username, password: password) {success, errorMessage in
+            authenticator?.authenticateWithUsername(username, password: password) {success, error in
                 if(success){
                     self.message.text = "success"
                 }else{
-                    self.message.text = errorMessage
+                    if let err = error{
+                        self.message.text = err.localizedDescription
+                    }
                 }
+                    
             }
         }
     }
