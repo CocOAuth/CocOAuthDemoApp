@@ -25,8 +25,18 @@ class ViewController: UIViewController, UITextFieldDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let config = OAuth2Config(tokenURL: URL(string: "http://brentertainment.com/oauth2/lockdin/token")!, clientID: "demoapp", clientSecret: "demopass")
+        
+        let config = OAuth2Config(tokenURL: URL(string: "https://brentertainment.com/oauth2/lockdin/token")!, clientID: "demoapp", clientSecret: "demopass")
+        
+    
+        //let url = "http://192.168.128.115:8080/authorization_server/oauth/token"
+        //let clientID = "F0B1C8C0-2964-40A0-AEFE-3EB1DA25A00Ddevelopment"
+        //let clientSecret = "b7v5mpWw/t3Pp0a4pj8EFZs/f5OizeGdd/J5z1/xJxw="
+        
+        //let config = OAuth2Config(tokenURL: URL(string: url)!, clientID: clientID, clientSecret: clientSecret, additionalHeader:["tenant":"development"])
+
         authenticator = Authenticator(config: config)
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
        // NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
